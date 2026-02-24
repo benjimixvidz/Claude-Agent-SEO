@@ -1,34 +1,43 @@
-# Installation Guide
+# Guide d'installation
 
-## Prerequisites
+## Prérequis
 
-- **Claude Code CLI** installed and configured
-- **Python 3.8+** with pip (optional, for advanced features)
-- **Git** for cloning (optional)
+- **Claude Code CLI** installé et configuré
+- **Python 3.8+** avec pip (optionnel, pour l'analyse visuelle via Playwright)
+- **Git** pour le clonage (optionnel)
 
-## Quick Install
+## Installation rapide
 
-Copy the `skills/` and `agents/` directories to your Claude configuration:
+### Via le script d'installation (recommandé)
 
 ```bash
-# Copy skills
+chmod +x install.sh
+./install.sh
+```
+
+Le script copie automatiquement les skills et agents dans `~/.claude/` et affiche un résumé de l'installation.
+
+### Copie manuelle
+
+```bash
+# Copier les skills
 cp -r skills/* ~/.claude/skills/
 
-# Copy agents
+# Copier les agents
 cp -r agents/* ~/.claude/agents/
 ```
 
-## Manual Installation
+## Installation détaillée
 
-### 1. Copy each component
+### 1. Copier chaque composant
 
 ```bash
-# Main orchestrator
+# Orchestrateur principal
 mkdir -p ~/.claude/skills/seo/references
 cp skills/seo/SKILL.md ~/.claude/skills/seo/
 cp skills/seo/references/* ~/.claude/skills/seo/references/
 
-# Sub-skills
+# Sous-skills
 for skill in seo-audit seo-competitor-pages seo-content seo-geo seo-hreflang seo-images seo-page seo-plan seo-programmatic seo-schema seo-sitemap seo-technical; do
   mkdir -p ~/.claude/skills/$skill
   cp -r skills/$skill/* ~/.claude/skills/$skill/
@@ -39,36 +48,36 @@ mkdir -p ~/.claude/agents
 cp agents/seo-*.md ~/.claude/agents/
 ```
 
-### 2. Install Playwright (optional, for visual analysis)
+### 2. Installer Playwright (optionnel, pour l'analyse visuelle)
 
 ```bash
 pip install playwright
 playwright install chromium
 ```
 
-## Verify Installation
+## Vérification de l'installation
 
-1. Start Claude Code:
+1. Lancer Claude Code :
 ```bash
 claude
 ```
 
-2. Test the skill:
+2. Tester le skill :
 ```
 /seo
 ```
 
-## Installation Paths
+## Chemins d'installation
 
-| Component | Path |
-|-----------|------|
-| Main skill | `~/.claude/skills/seo/` |
-| Sub-skills | `~/.claude/skills/seo-*/` |
-| Subagents | `~/.claude/agents/seo-*.md` |
-| References | `~/.claude/skills/seo/references/` |
-| Industry templates | `~/.claude/skills/seo-plan/assets/` |
+| Composant | Chemin |
+|-----------|--------|
+| Skill principal | `~/.claude/skills/seo/` |
+| Sous-skills | `~/.claude/skills/seo-*/` |
+| Sous-agents | `~/.claude/agents/seo-*.md` |
+| Références | `~/.claude/skills/seo/references/` |
+| Templates industrie | `~/.claude/skills/seo-plan/assets/` |
 
-## Uninstallation
+## Désinstallation
 
 ```bash
 rm -rf ~/.claude/skills/seo

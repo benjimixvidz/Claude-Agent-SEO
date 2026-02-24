@@ -1,83 +1,83 @@
 # Architecture
 
-## Overview
+## Vue d'ensemble
 
-Claude SEO follows Anthropic's official Claude Code skill specification with a modular, multi-skill architecture.
+Claude SEO suit la spécification officielle des skills Claude Code d'Anthropic avec une architecture modulaire multi-skills.
 
-## Directory Structure
+## Structure des répertoires
 
 ```
 ~/.claude/
 ├── skills/
-│   ├── seo/                  # Main orchestrator skill
-│   │   ├── SKILL.md              # Entry point with routing logic
-│   │   └── references/           # On-demand reference files
+│   ├── seo/                  # Skill orchestrateur principal
+│   │   ├── SKILL.md              # Point d'entrée avec logique de routage
+│   │   └── references/           # Fichiers de référence chargés à la demande
 │   │       ├── cwv-thresholds.md
 │   │       ├── schema-types.md
 │   │       ├── eeat-framework.md
 │   │       └── quality-gates.md
 │   │
-│   ├── seo-audit/            # Full site audit
-│   ├── seo-competitor-pages/ # Competitor comparison pages
-│   ├── seo-content/          # E-E-A-T analysis
-│   ├── seo-geo/              # AI search optimization
-│   ├── seo-hreflang/         # Hreflang/i18n SEO
-│   ├── seo-images/           # Image optimization
-│   ├── seo-page/             # Single page analysis
-│   ├── seo-plan/             # Strategic planning
-│   │   └── assets/           # Industry templates
-│   ├── seo-programmatic/     # Programmatic SEO
-│   ├── seo-schema/           # Schema markup
-│   ├── seo-sitemap/          # Sitemap analysis/generation
-│   └── seo-technical/        # Technical SEO
+│   ├── seo-audit/            # Audit complet du site
+│   ├── seo-competitor-pages/ # Pages de comparaison concurrentielles
+│   ├── seo-content/          # Analyse E-E-A-T
+│   ├── seo-geo/              # Optimisation pour la recherche IA
+│   ├── seo-hreflang/         # SEO international / hreflang
+│   ├── seo-images/           # Optimisation des images
+│   ├── seo-page/             # Analyse d'une seule page
+│   ├── seo-plan/             # Planification stratégique
+│   │   └── assets/           # Templates par industrie
+│   ├── seo-programmatic/     # SEO programmatique
+│   ├── seo-schema/           # Données structurées
+│   ├── seo-sitemap/          # Analyse et génération de sitemaps
+│   └── seo-technical/        # SEO technique
 │
 └── agents/
-    ├── seo-technical.md      # Technical SEO specialist
-    ├── seo-content.md        # Content quality reviewer
-    ├── seo-schema.md         # Schema markup expert
-    ├── seo-sitemap.md        # Sitemap architect
-    ├── seo-performance.md    # Performance analyzer
-    └── seo-visual.md         # Visual analyzer
+    ├── seo-technical.md      # Spécialiste SEO technique
+    ├── seo-content.md        # Évaluateur de qualité de contenu
+    ├── seo-schema.md         # Expert données structurées
+    ├── seo-sitemap.md        # Architecte sitemap
+    ├── seo-performance.md    # Analyste performance
+    └── seo-visual.md         # Analyste visuel
 ```
 
-## Orchestration Flow
+## Flux d'orchestration
 
-### Full Audit
-
-```
-User Request → seo (orchestrator) → Detect business type
-                                   → Spawn subagents in parallel:
-                                     ├── seo-technical
-                                     ├── seo-content
-                                     ├── seo-schema
-                                     ├── seo-sitemap
-                                     ├── seo-performance
-                                     └── seo-visual
-                                   → Aggregate Results
-                                   → Generate Report
-```
-
-### Individual Command
+### Audit complet
 
 ```
-User Request (e.g., /seo page) → seo (orchestrator) → seo-page (sub-skill)
+Requête utilisateur → seo (orchestrateur) → Détection du type d'activité
+                                           → Lancement des sous-agents en parallèle :
+                                             ├── seo-technical
+                                             ├── seo-content
+                                             ├── seo-schema
+                                             ├── seo-sitemap
+                                             ├── seo-performance
+                                             └── seo-visual
+                                           → Agrégation des résultats
+                                           → Génération du rapport
 ```
 
-## Design Principles
+### Commande individuelle
 
-1. **Progressive Disclosure** — Main SKILL.md is concise (<200 lines), reference files loaded on-demand
-2. **Parallel Processing** — Subagents run concurrently during audits
-3. **Quality Gates** — Built-in thresholds prevent bad recommendations
-4. **Industry Awareness** — Templates for different business types
+```
+Requête utilisateur (ex: /seo page) → seo (orchestrateur) → seo-page (sous-skill)
+```
 
-## Extension Points
+## Principes de conception
 
-### Adding a New Sub-Skill
-1. Create `skills/seo-newskill/SKILL.md`
-2. Add YAML frontmatter with name and description
-3. Update main `seo/SKILL.md` to route to new skill
+1. **Divulgation progressive** — Le SKILL.md principal est concis (<200 lignes), les fichiers de référence sont chargés à la demande
+2. **Traitement parallèle** — Les sous-agents s'exécutent simultanément pendant les audits
+3. **Garde-fous qualité** — Des seuils intégrés empêchent les mauvaises recommandations
+4. **Conscience sectorielle** — Templates adaptés aux différents types d'activité
 
-### Adding a New Subagent
-1. Create `agents/seo-newagent.md`
-2. Add YAML frontmatter with name, description, tools
-3. Reference from relevant skills
+## Points d'extension
+
+### Ajouter un nouveau sous-skill
+1. Créer `skills/seo-nouveau/SKILL.md`
+2. Ajouter le frontmatter YAML avec nom et description
+3. Mettre à jour le `seo/SKILL.md` principal pour router vers le nouveau skill
+
+### Ajouter un nouveau sous-agent
+1. Créer `agents/seo-nouveau.md`
+2. Ajouter le frontmatter YAML avec nom, description, outils
+3. Référencer depuis les skills concernés
