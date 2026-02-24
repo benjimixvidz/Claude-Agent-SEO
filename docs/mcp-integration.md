@@ -1,17 +1,17 @@
-# MCP Integration
+# Intégration MCP
 
-## Available Integrations
+## Intégrations disponibles
 
-### Official SEO MCP Servers (2025-2026)
+### Serveurs MCP SEO officiels (2025-2026)
 
-| Tool | Package / Endpoint | Type | Notes |
-|------|-------------------|------|-------|
-| Ahrefs | @ahrefs/mcp | Official | Launched July 2025. Backlinks, keywords, site audit. |
-| Semrush | https://mcp.semrush.com/v1/mcp | Official (remote) | Full API access. Domain analytics, keyword research. |
-| Google Search Console | mcp-server-gsc | Community | By ahonn. Search performance, URL inspection. |
-| PageSpeed Insights | mcp-server-pagespeed | Community | By enemyrr. Lighthouse audits, CWV metrics. |
-| DataForSEO | dataforseo-mcp-server | Community | SERP data, keyword data, backlinks. |
-| kwrds.ai | kwrds MCP server | Community | Keyword research, search volume. |
+| Outil | Package / Endpoint | Type | Notes |
+|-------|-------------------|------|-------|
+| Ahrefs | @ahrefs/mcp | Officiel | Lancé en juillet 2025. Backlinks, mots-clés, audit de site. |
+| Semrush | https://mcp.semrush.com/v1/mcp | Officiel (remote) | Accès complet à l'API. Analyse de domaine, recherche de mots-clés. |
+| Google Search Console | mcp-server-gsc | Communautaire | Par ahonn. Performance de recherche, inspection d'URL. |
+| PageSpeed Insights | mcp-server-pagespeed | Communautaire | Par enemyrr. Audits Lighthouse, métriques CWV. |
+| DataForSEO | dataforseo-mcp-server | Communautaire | Données SERP, mots-clés, backlinks. |
+| kwrds.ai | kwrds MCP server | Communautaire | Recherche de mots-clés, volume de recherche. |
 
 ### Google Search Console
 
@@ -22,14 +22,14 @@
       "command": "npx",
       "args": ["-y", "mcp-server-gsc"],
       "env": {
-        "GOOGLE_CREDENTIALS_PATH": "/path/to/credentials.json"
+        "GOOGLE_CREDENTIALS_PATH": "/chemin/vers/credentials.json"
       }
     }
   }
 }
 ```
 
-### PageSpeed Insights MCP Server
+### Serveur MCP PageSpeed Insights
 
 ```json
 {
@@ -38,38 +38,38 @@
       "command": "npx",
       "args": ["-y", "mcp-server-pagespeed"],
       "env": {
-        "PAGESPEED_API_KEY": "your-api-key"
+        "PAGESPEED_API_KEY": "votre-clé-api"
       }
     }
   }
 }
 ```
 
-### PageSpeed Insights API (direct)
+### API PageSpeed Insights (directe)
 
 ```bash
-curl "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=URL&key=YOUR_API_KEY&strategy=mobile&category=performance&category=seo"
+curl "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=URL&key=VOTRE_CLÉ_API&strategy=mobile&category=performance&category=seo"
 ```
 
-### CrUX API (field data)
+### API CrUX (données terrain)
 
 ```bash
-curl -X POST "https://chromeuxreport.googleapis.com/v1/records:queryRecord?key=YOUR_API_KEY" \
+curl -X POST "https://chromeuxreport.googleapis.com/v1/records:queryRecord?key=VOTRE_CLÉ_API" \
   -H "Content-Type: application/json" \
   -d '{"url": "https://example.com", "formFactor": "PHONE"}'
 ```
 
-## Without API Keys
+## Sans clés API
 
-Claude SEO can still:
-- Analyze HTML source for potential issues
-- Identify common performance problems
-- Check for render-blocking resources
-- Evaluate image optimization opportunities
-- Detect JavaScript-heavy implementations
+Claude SEO peut tout de même :
+- Analyser le code source HTML pour détecter les problèmes potentiels
+- Identifier les problèmes de performance courants
+- Vérifier les ressources bloquant le rendu
+- Évaluer les opportunités d'optimisation des images
+- Détecter les implémentations lourdes en JavaScript
 
-## Best Practices
+## Bonnes pratiques
 
-- **Rate Limiting**: Respect API quotas (typically 25k requests/day for PageSpeed)
-- **Caching**: Cache results to avoid redundant API calls
-- **Field vs Lab**: Prioritize field data (CrUX) for ranking signals
+- **Limitation de débit** : Respecter les quotas API (typiquement 25k requêtes/jour pour PageSpeed)
+- **Cache** : Mettre en cache les résultats pour éviter les appels API redondants
+- **Terrain vs Labo** : Privilégier les données terrain (CrUX) pour les signaux de classement

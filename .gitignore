@@ -1,0 +1,30 @@
+# Système
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Environnement
+.env
+.env.local
+credentials.json
+
+# Captures d'écran et rapports générés
+screenshots/
+FULL-AUDIT-REPORT.md
+ACTION-PLAN.md
+
+# Python (si Playwright est utilisé)
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Node (si MCP servers sont installés localement)
+node_modules/
