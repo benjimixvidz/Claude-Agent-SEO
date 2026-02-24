@@ -1,146 +1,256 @@
 # Claude SEO — Configuration Expert SEO pour Claude Code
 
-Suite complète de skills, agents et références pour transformer Claude Code en consultant SEO professionnel.
+Suite complète de skills, agents et références pour transformer Claude Code en consultant SEO professionnel. 13 skills spécialisés, 6 sous-agents parallèles, à jour avec les standards de février 2026.
+
+---
+
+## Installation
+
+### Installation rapide (Linux / macOS)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/benjimixvidz/Claude-Agent-SEO/main/install.sh | bash
+```
+
+### Installation manuelle
+
+```bash
+git clone https://github.com/benjimixvidz/Claude-Agent-SEO.git
+cd Claude-Agent-SEO
+chmod +x install.sh
+./install.sh
+```
+
+---
+
+## Démarrage rapide
+
+```bash
+# Lancer Claude Code
+claude
+
+# Audit SEO complet d'un site
+/seo audit https://example.com
+
+# Analyser une seule page
+/seo page https://example.com/a-propos
+
+# Vérifier les données structurées
+/seo schema https://example.com
+
+# Générer un sitemap
+/seo sitemap generate
+
+# Optimiser pour la recherche IA
+/seo geo https://example.com
+```
+
+---
+
+## Commandes
+
+| Commande | Description |
+|----------|-------------|
+| `/seo audit <url>` | Audit complet du site avec délégation parallèle à 6 sous-agents |
+| `/seo page <url>` | Analyse approfondie d'une seule page |
+| `/seo technical <url>` | Audit SEO technique (8 catégories) |
+| `/seo content <url>` | Analyse E-E-A-T et qualité du contenu |
+| `/seo schema <url>` | Détection, validation et génération Schema.org |
+| `/seo sitemap <url>` | Analyse du sitemap XML existant |
+| `/seo sitemap generate` | Génération d'un nouveau sitemap avec templates industrie |
+| `/seo images <url>` | Audit d'optimisation des images |
+| `/seo geo <url>` | Optimisation AI Overviews / Generative Engine Optimization |
+| `/seo plan <type>` | Planification stratégique SEO (saas, local, ecommerce, publisher, agency) |
+| `/seo programmatic <url>` | Analyse et planification SEO programmatique |
+| `/seo competitor <url>` | Génération de pages de comparaison concurrentielles |
+| `/seo hreflang <url>` | Audit et génération hreflang / SEO international |
+
+---
+
+### `/seo programmatic [url|plan]`
+
+**SEO programmatique — Analyse et planification**
+
+Créez des pages SEO à grande échelle à partir de sources de données avec des garde-fous qualité.
+
+- Analyse des pages programmatiques existantes pour le contenu mince et la cannibalisation
+- Planification de patterns d'URL et de structures de templates pour les pages data-driven
+- Automatisation du maillage interne entre les pages générées
+- Stratégie canonique et prévention du bloat d'index
+- Garde-fous qualité : ⚠️ AVERTISSEMENT à 100+ pages, 🛑 ARRÊT à 500+ sans audit
+
+---
+
+### `/seo competitor [url|generate]`
+
+**Générateur de pages de comparaison concurrentielles**
+
+Créez des pages "X vs Y" et "alternatives à X" optimisées pour la conversion.
+
+- Tableaux de comparaison structurés avec matrices de fonctionnalités
+- Balisage Product schema avec AggregateRating
+- Layouts optimisés pour la conversion avec placement CTA
+- Ciblage de mots-clés pour les requêtes d'intention de comparaison
+- Règles d'équité pour une représentation honnête des concurrents
+
+---
+
+### `/seo hreflang [url]`
+
+**Audit et génération hreflang / SEO international**
+
+Validez et générez des balises hreflang pour les sites multilingues.
+
+- Génération de balises hreflang (HTML, en-têtes HTTP ou sitemap XML)
+- Validation des balises auto-référentes, balises retour, x-default
+- Détection des erreurs courantes (retours manquants, codes invalides, HTTP/HTTPS mismatch)
+- Support hreflang cross-domain
+- Validation des codes langue/région (ISO 639-1 + ISO 3166-1)
+
+---
 
 ## Fonctionnalités
 
-| Skill | Description |
-|-------|-------------|
-| **seo** | Orchestrateur principal — route vers les sous-skills |
-| **seo-audit** | Audit SEO complet avec 6 agents parallèles |
-| **seo-page** | Analyse approfondie d'une seule page |
-| **seo-technical** | Audit technique (crawl, index, CWV, rendu JS) |
-| **seo-content** | Analyse E-E-A-T et qualité du contenu |
-| **seo-schema** | Détection, validation et génération de données structurées |
-| **seo-sitemap** | Analyse et génération de sitemaps XML |
-| **seo-images** | Optimisation des images (alt, taille, format, lazy loading) |
-| **seo-hreflang** | SEO international / validation hreflang |
-| **seo-geo** | Optimisation pour AI Overviews, ChatGPT, Perplexity (GEO) |
-| **seo-plan** | Planification stratégique SEO avec templates par industrie |
-| **seo-programmatic** | SEO programmatique à grande échelle |
-| **seo-competitor-pages** | Pages de comparaison et alternatives |
+### Core Web Vitals (métriques actuelles)
 
-## Structure
+| Métrique | Bon | À améliorer | Mauvais |
+|----------|-----|-------------|---------|
+| **LCP** (Largest Contentful Paint) | ≤ 2,5s | 2,5s – 4,0s | > 4,0s |
+| **INP** (Interaction to Next Paint) | ≤ 200ms | 200ms – 500ms | > 500ms |
+| **CLS** (Cumulative Layout Shift) | ≤ 0,1 | 0,1 – 0,25 | > 0,25 |
+
+> INP a remplacé FID le 12 mars 2024. FID a été entièrement retiré des outils Chrome le 9 septembre 2024.
+
+### Analyse E-E-A-T
+
+Mis à jour selon les Quality Rater Guidelines de septembre 2025 :
+
+| Facteur | Poids | Signaux |
+|---------|-------|---------|
+| **Expérience** | 20% | Signaux de vécu, contenu original, études de cas |
+| **Expertise** | 25% | Références de l'auteur, profondeur technique |
+| **Autorité** | 25% | Reconnaissance du secteur, citations |
+| **Fiabilité** | 30% | Coordonnées, sécurité, transparence |
+
+### Données structurées Schema.org
+
+- **Détection** : JSON-LD (préféré), Microdata, RDFa
+- **Validation** contre les types supportés par Google
+- **Génération** avec templates prêts à l'emploi
+- **Conscience des obsolescences** :
+  - HowTo : obsolète (sept. 2023)
+  - FAQ : restreint aux sites gov/santé (août 2023)
+  - SpecialAnnouncement : obsolète (juil. 2025)
+
+### Vidéo et Live Schema
+
+Types de schéma additionnels pour le contenu vidéo, le streaming live et les moments clés :
+
+| Type | Utilisation |
+|------|-------------|
+| **VideoObject** | Balisage de page vidéo avec miniature, durée, date d'upload |
+| **BroadcastEvent** | Badge LIVE pour le contenu en streaming |
+| **Clip** | Moments clés / chapitres dans les vidéos |
+| **SeekToAction** | Navigation dans les résultats enrichis vidéo |
+| **SoftwareSourceCode** | Pages de dépôts de code open source |
+
+### Optimisation recherche IA (GEO)
+
+Optimisez votre contenu pour les nouveaux moteurs de recherche IA :
+
+| Plateforme | Sources de citations principales |
+|------------|----------------------------------|
+| **Google AI Overviews** | Pages top-10 (92%), passages optimisés |
+| **ChatGPT** | Wikipedia (47,9%), Reddit (11,3%) |
+| **Perplexity** | Reddit (46,7%), Wikipedia |
+| **Bing Copilot** | Index Bing, sites faisant autorité |
+
+> **Statistique clé** : Les mentions de marque corrèlent **3x plus fortement** avec la visibilité IA que les backlinks (étude Ahrefs déc. 2025).
+
+### Garde-fous qualité
+
+- ⚠️ Avertissement à partir de 30+ pages de localisation
+- 🛑 Arrêt à partir de 50+ pages de localisation
+- Détection de contenu mince par type de page
+- Prévention des pages satellites (doorway pages)
+
+---
+
+## Architecture
 
 ```
-Claude-Agent-SEO/
-├── install.sh                         # Script d'installation
-├── skills/
-│   ├── seo/                           # Orchestrateur principal
-│   │   ├── SKILL.md
-│   │   └── references/
-│   │       ├── cwv-thresholds.md      # Seuils Core Web Vitals
-│   │       ├── schema-types.md        # Statut des types Schema.org
-│   │       ├── eeat-framework.md      # Framework E-E-A-T
-│   │       └── quality-gates.md       # Seuils de qualité contenu
-│   ├── seo-audit/SKILL.md
-│   ├── seo-competitor-pages/SKILL.md
-│   ├── seo-content/SKILL.md
-│   ├── seo-geo/SKILL.md
-│   ├── seo-hreflang/SKILL.md
-│   ├── seo-images/SKILL.md
-│   ├── seo-page/SKILL.md
-│   ├── seo-plan/
-│   │   ├── SKILL.md
-│   │   └── assets/                    # Templates par industrie
-│   │       ├── saas.md
-│   │       ├── ecommerce.md
-│   │       ├── local-service.md
-│   │       ├── publisher.md
-│   │       ├── agency.md
-│   │       └── generic.md
-│   ├── seo-programmatic/SKILL.md
-│   ├── seo-schema/SKILL.md
-│   ├── seo-sitemap/SKILL.md
-│   └── seo-technical/SKILL.md
-├── agents/
-│   ├── seo-technical.md
-│   ├── seo-content.md
-│   ├── seo-schema.md
-│   ├── seo-sitemap.md
-│   ├── seo-performance.md
-│   └── seo-visual.md
-└── docs/
-    ├── architecture.md
-    ├── mcp-integration.md
-    └── installation.md
+~/.claude/skills/seo/         # Skill principal (orchestrateur)
+~/.claude/skills/seo-*/       # Sous-skills (12 au total)
+~/.claude/agents/seo-*.md     # Sous-agents (6 au total)
 ```
 
-## Installation rapide
+L'orchestrateur principal (`/seo`) détecte automatiquement le type d'activité (E-commerce, SaaS, Local, Publisher, Agency) et charge le template industrie correspondant. Lors d'un audit complet, 6 sous-agents s'exécutent en parallèle pour analyser les différents aspects SEO.
 
-```bash
-# Via le script (recommandé)
-chmod +x install.sh
-./install.sh
+Voir `docs/architecture.md` pour le détail du flux d'orchestration.
 
-# Ou manuellement
-cp -r skills/* ~/.claude/skills/
-cp -r agents/* ~/.claude/agents/
-```
+---
 
-Voir `docs/installation.md` pour le guide complet, l'installation de Playwright (optionnel) et la désinstallation.
+## Ce qui est à jour (Février 2026)
+
+- INP remplace FID (mars 2024) — FID jamais mentionné
+- HowTo obsolète (sept. 2023) — jamais recommandé
+- FAQ restreint aux sites gov/santé (août 2023)
+- Helpful Content System fusionné dans le core algo (mars 2024)
+- Mobile-first indexing 100% (juillet 2024)
+- December 2025 Core Update — E-E-A-T étendu à toutes les requêtes
+- Google AI Mode et optimisation GEO
+- Scaled Content Abuse enforcement 2025
+- JS SEO guidance (décembre 2025)
+- RSL 1.0 et llms.txt standards
+
+---
 
 ## Prérequis
 
 - **Claude Code CLI** installé et configuré
-- **Python 3.8+** avec pip (optionnel, pour l'analyse visuelle via Playwright)
+- **Python 3.8+** (optionnel, pour les captures d'écran via Playwright)
 
-## Utilisation
+---
 
-Dans Claude Code :
+## Désinstallation
 
-```
-/seo audit https://example.com        # Audit complet
-/seo page https://example.com/page    # Analyse d'une page
-/seo technical https://example.com    # Audit technique
-/seo content https://example.com      # Analyse E-E-A-T
-/seo schema https://example.com       # Données structurées
-/seo sitemap https://example.com      # Analyse sitemap
-/seo images https://example.com       # Audit images
-/seo hreflang https://example.com     # SEO international
-/seo geo https://example.com          # Optimisation AI search
-/seo plan                             # Plan stratégique SEO
-/seo programmatic                     # SEO programmatique
-/seo competitor                       # Pages de comparaison
+```bash
+rm -rf ~/.claude/skills/seo ~/.claude/skills/seo-*
+rm -f ~/.claude/agents/seo-*.md
 ```
 
-## Intégrations MCP recommandées
+---
 
-| Outil | Type | Utilité |
-|-------|------|---------|
-| Semrush | Officiel (remote) | Mots-clés, domaine, backlinks |
-| Ahrefs | Officiel | Backlinks, mots-clés, audit |
-| Google Search Console | Communautaire | Performance organique, sitemaps |
-| PageSpeed Insights | Communautaire | Core Web Vitals, Lighthouse |
+## Intégrations MCP
 
-Voir `docs/mcp-integration.md` pour la configuration détaillée.
+S'intègre avec les serveurs MCP pour des données SEO en temps réel — y compris les serveurs officiels d'Ahrefs (`@ahrefs/mcp`) et Semrush, ainsi que les serveurs communautaires pour Google Search Console, PageSpeed Insights et DataForSEO.
 
-## Ce qui est à jour (Février 2026)
+Voir le [guide d'intégration MCP](docs/mcp-integration.md) pour la configuration.
 
-- INP remplace FID (Mars 2024) — FID jamais mentionné
-- HowTo obsolète (Sept 2023) — jamais recommandé
-- FAQ restreint aux sites gov/santé (Août 2023)
-- Helpful Content System fusionné dans le core algo (Mars 2024)
-- Mobile-first indexing 100% (Juillet 2024)
-- December 2025 Core Update — E-E-A-T étendu à toutes les requêtes
-- Google AI Mode et optimisation GEO
-- Scaled Content Abuse enforcement 2025
-- JS SEO guidance December 2025
-- RSL 1.0 et llms.txt standards
+---
+
+## Documentation
+
+- [Guide d'installation](docs/installation.md)
+- [Architecture](docs/architecture.md)
+- [Intégration MCP](docs/mcp-integration.md)
+
+---
 
 ## Contribuer
 
 Les contributions sont les bienvenues. Pour contribuer :
 
 1. Forker le dépôt
-2. Créer une branche pour votre fonctionnalité (`git checkout -b feature/ma-fonctionnalite`)
-3. Commiter vos changements (`git commit -m "Ajout de ma fonctionnalité"`)
-4. Pousser vers la branche (`git push origin feature/ma-fonctionnalite`)
-5. Ouvrir une Pull Request
+2. Créer une branche (`git checkout -b feature/ma-fonctionnalite`)
+3. Commiter vos changements
+4. Pousser et ouvrir une Pull Request
+
+---
 
 ## Licence
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+MIT License — voir [LICENSE](LICENSE) pour les détails.
 
 ## Crédits
 
